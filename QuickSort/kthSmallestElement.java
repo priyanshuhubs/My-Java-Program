@@ -1,0 +1,76 @@
+package QuickSort;
+
+import java.util.Scanner;
+
+public class kthSmallestElement {
+    static int ans;
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static int partition(int[] arr, int lo, int hi) {
+        int pivot = arr[lo], pivotIdx = lo;
+        int smallercount = 0;
+        for (int i = lo + 1; i <= hi; i++) {
+            if (arr[i] <= pivot)
+                smallercount++;
+        }
+        int correctIdx = pivotIdx + smallercount;
+        // swap arr[pIdx] & arr[cIdx];
+        swap(arr, pivotIdx, correctIdx);
+
+     
+        // spliting partition
+        int i = lo, j = hi;
+        if (arr[i] <= pivot)
+            i++;
+        while (i < correctIdx && j > correctIdx) {
+            if (arr[i] <= pivot)
+                i++;
+            else if (arr[j] > pivot)
+                j--;
+            else if (arr[i] > pivot && arr[j] <= pivot) {
+                swap(arr, i, j);
+            }
+        }
+           
+
+        return correctIdx;
+    }
+
+    public static void quickSelect(int[] arr, int lo, int hi, int k) {
+        if (lo > hi)
+            return;
+            // if(lo==hi){
+            //     if(lo==k-1) ans = arr[lo];
+            //     return;
+            // }
+        // pivot (arr[lo] ko shi jagah rakho)
+        // and uske left mai pivot se chote no. and right mai pivot se bade element
+        int idx = partition(arr, lo, hi);
+        if (idx == k - 1) {
+            ans = arr[idx];
+            return;
+        }
+        if ((k - 1) < idx)
+            quickSelect(arr, lo, idx - 1, k);
+        else
+            quickSelect(arr, idx + 1, hi, k);
+
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 4, 9, 1, 2, 6, 5, 8 };
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter k : ");
+        int k = sc.nextInt();
+        int n = arr.length;
+        ans = -1;
+        quickSelect(arr, 0, n - 1, k);
+        System.out.println(ans);
+        sc.close();
+    }
+}
