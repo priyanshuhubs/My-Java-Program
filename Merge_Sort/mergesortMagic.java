@@ -1,5 +1,6 @@
 package Merge_Sort;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class mergesortMagic {
@@ -12,11 +13,9 @@ public class mergesortMagic {
         for (int i = 0; i < m; i++) {
             arr[i] = sc.nextInt();
         }
-        System.out.print("Before Sorting: ");
-        print(arr);
+        System.out.println("Orginal Array: "+Arrays.toString(arr));
         mergesort(arr);
-        System.out.print("After Sorting: ");
-        print(arr);
+        System.out.println("After Sorting: "+Arrays.toString(arr));
         sc.close();
     }
 
@@ -65,12 +64,5 @@ public class mergesortMagic {
             c[k++] = a[i++];
         while (j < b.length)
             c[k++] = b[j++];
-    }
-
-    // ---------------- PRINT FUNCTION ----------------
-    public static void print(int[] arr) {
-        for (int ele : arr)
-            System.out.print(ele + " ");
-        System.out.println(); // newline for better readability
     }
 }

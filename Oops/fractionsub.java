@@ -1,5 +1,6 @@
 package Oops;
 
+
 public class fractionsub {
     // Euclidean Algorithm for gcd
     public static int gcd(int a, int b) {
