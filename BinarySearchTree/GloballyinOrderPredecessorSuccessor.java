@@ -1,6 +1,7 @@
 package BinarySearchTree;
 
 public class GloballyinOrderPredecessorSuccessor {
+    
     private static Node pre = null;
     private static Node succ = null;
     private static Node prev = null;
